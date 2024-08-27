@@ -6,11 +6,9 @@ jobs:
     strategy:
       matrix:
         include:
-        - { agent: ubuntu-latest, target: win32 }
-        - { agent: ubuntu-latest, target: win64 }
-        - { agent: debian12-agent, target: win32 }
-        - { agent: debian12-agent, target: win64 }
-    runs-on: '${{ matrix.agent }}'
+        - { target: win32 }
+        - { target: win64 }
+    runs-on: ubuntu-latest
     env:
       CFLAGS: '-Werror'
     steps:
