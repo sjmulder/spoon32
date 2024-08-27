@@ -1,0 +1,32 @@
+#include <winres.h>
+#include "resource.h"
+
+#define VER	0,1,0,0
+#define VERSTR	"0.1"
+
+VS_VERSION_INFO	VERSIONINFO
+	FILEVERSION     VER
+	PRODUCTVERSION  VER
+	FILEFLAGS       VS_FF_PRERELEASE
+	FILEOS          VOS_NT
+	FILETYPE        VFT_APP
+{
+	BLOCK "StringFileInfo" {
+		/* English */
+		BLOCK "000904b0" {
+			VALUE "CompanyName",      "Sijmen J. Mulder"
+			VALUE "FileVersion",      VERSTR
+			VALUE "LegalCopyright",   "© 2024 Sijmen J. Mulder"
+			VALUE "ProductName",      "Spoon"
+			VALUE "ProductVersion",   VERSTR
+			VALUE "FileDescription",  "Psono client"
+		}
+	}
+}
+
+IDR_MENU MENU {
+	POPUP "&File" {
+		MENUITEM "&Close\tAlt+F4",	ID_FILE_CLOSE
+	}
+}
+

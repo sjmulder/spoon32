@@ -1,0 +1,5 @@
+#define IDR_MENU	101
+
+#define ID_FILE_NEW	40001
+#define ID_FILE_CLOSE	40005
+
