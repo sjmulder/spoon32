@@ -13,4 +13,3 @@ clean:
 	${MAKE} -C obj/win64 clean
 
 .PHONY: all win32 win64 clean
-
