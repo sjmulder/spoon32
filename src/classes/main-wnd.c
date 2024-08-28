@@ -26,7 +26,7 @@ layout(struct class_ctx *ctx)
 	RECT client;
 
 	GetClientRect(ctx->wnd, &client);
-	MoveWindow(ctx->tree, 0, 0, client.right/4, client.bottom, TRUE);
+	MoveWindow(ctx->tree, 0, 0, client.right/3, client.bottom, TRUE);
 }
 
 static void
