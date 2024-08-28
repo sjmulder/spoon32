@@ -23,7 +23,7 @@ wWinMain(
 			    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
 			ExitProcess(1);
 		}
-	
+
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

@@ -39,4 +39,3 @@ classes/main-wnd.o:	classes/classes.h util.h resource.h
 
 .rc.o:
 	${RESC} $< $@
-

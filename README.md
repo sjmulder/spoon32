@@ -19,4 +19,3 @@ Author
 ------
 By Sijmen J. Mulder (ik@sjmulder.nl). Licensed under the GNU GPL 3.0
 or any later version. See LICENSE.txt.
-
