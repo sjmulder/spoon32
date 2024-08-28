@@ -13,7 +13,7 @@ Then:
      make
 
 This yields `dist/spoon32.exe` and `dist/spoon64.exe` as well as
-non-stripped `-db g` versions.
+non-stripped `-dbg.exe` versions.
 
 Author
 ------
