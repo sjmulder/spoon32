@@ -16,7 +16,7 @@ VS_VERSION_INFO	VERSIONINFO
 		BLOCK "000904b0" {
 			VALUE "CompanyName",      "Sijmen J. Mulder"
 			VALUE "FileVersion",      VERSTR
-			VALUE "LegalCopyright",   "© 2024 Sijmen J. Mulder"
+			VALUE "LegalCopyright",   "(c) 2024 Sijmen J. Mulder"
 			VALUE "ProductName",      "Spoon"
 			VALUE "ProductVersion",   VERSTR
 			VALUE "FileDescription",  "Psono client"
