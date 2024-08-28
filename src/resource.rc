@@ -22,6 +22,10 @@ VS_VERSION_INFO	VERSIONINFO
 			VALUE "FileDescription",  "Psono client"
 		}
 	}
+	
+	BLOCK "VarFileInfo" {
+		VALUE "Translation", LANG_ENGLISH, 1200
+	}
 }
 
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "manifest.xml"
@@ -31,4 +35,3 @@ IDR_MENU MENU {
 		MENUITEM "&Close\tAlt+F4",	ID_FILE_CLOSE
 	}
 }
-
