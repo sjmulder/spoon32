@@ -45,6 +45,11 @@ static void
 handle_command(HWND wnd, WORD cmd)
 {
 	switch (cmd) {
+	case ID_FILE_CONNECT:
+		MessageBox(NULL, L"Not yet implemented.",
+		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		break;
+
 	case ID_FILE_CLOSE:
 		DestroyWindow(wnd);
 		break;

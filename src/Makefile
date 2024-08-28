@@ -29,7 +29,7 @@ ${PROG}.exe: ${PROG}-dbg.exe
 ${PROG}-dbg.exe: ${OBJ}
 	${LINK.o} -o ${PROG}-dbg.exe ${OBJ}
 
-winmain.o:		classes/classes.h
+winmain.o:		resource.h classes/classes.h
 util.o:			util.h
 resource.o:		resource.h manifest.xml
 classes/main-wnd.o:	classes/classes.h util.h resource.h

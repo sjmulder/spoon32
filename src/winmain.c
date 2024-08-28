@@ -1,4 +1,5 @@
 #include <windows.h>
+#include "resource.h"
 #include "classes/classes.h"
 
 int WINAPI
@@ -8,9 +9,17 @@ wWinMain(
     [[maybe_unused]] LPWSTR cmdline,
     int show_cmd)
 {
+	HACCEL accel;
 	HWND wnd;
 	BOOL ret;
 	MSG msg;
+
+	accel = LoadAccelerators(inst, MAKEINTRESOURCE(IDR_ACCELERATOR));
+	if (!accel) {
+		MessageBox(NULL, L"Failed to load accelerators",
+		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		ExitProcess(1);
+	}
 
 	register_main_wnd();
 
@@ -24,10 +33,12 @@ wWinMain(
 			ExitProcess(1);
 		}
 
+		if (TranslateAccelerator(wnd, accel, &msg))
+			continue;
+
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
 	
 	return 0;
 }
-
