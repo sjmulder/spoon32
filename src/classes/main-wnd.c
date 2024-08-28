@@ -4,7 +4,7 @@
 #include "../resource.h"
 
 struct class_ctx {
-	HWND wnd, tree;
+	HWND wnd, sbar, tree;
 };
 
 static const wchar_t class_name[] = L"SpoonMainWnd";
@@ -12,6 +12,12 @@ static const wchar_t class_name[] = L"SpoonMainWnd";
 static void
 setup(struct class_ctx *ctx)
 {
+	ctx->sbar = CreateWindowEx(
+	    0, STATUSCLASSNAME, L"Ready",
+	    SBARS_SIZEGRIP | WS_CHILD | WS_VISIBLE,
+	    0, 0, 0, 0,
+	    ctx->wnd, NULL, GetModuleHandle(NULL), NULL);
+
 	ctx->tree = CreateWindowEx(
 	    WS_EX_CLIENTEDGE,
 	    WC_TREEVIEW, L"Index",
@@ -23,10 +29,15 @@ setup(struct class_ctx *ctx)
 static void
 layout(struct class_ctx *ctx)
 {
-	RECT client;
+	RECT client, sbar;
+
+	SendMessage(ctx->sbar, WM_SIZE, 0, 0);
 
 	GetClientRect(ctx->wnd, &client);
-	MoveWindow(ctx->tree, 0, 0, client.right/3, client.bottom, TRUE);
+	GetWindowRect(ctx->sbar, &sbar);
+	ScreenToClient(ctx->wnd, &sbar);
+
+	MoveWindow(ctx->tree, 0, 0, client.right/3, sbar.top, TRUE);
 }
 
 static void
