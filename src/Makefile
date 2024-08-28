@@ -1,5 +1,6 @@
-PROG?=	spoon.exe
+PROG?=	spoon
 RESC?=	windres
+STRIP?=	strip
 
 OBJ=	winmain.o \
 	resource.o \
@@ -12,16 +13,20 @@ CFLAGS+=	-DUNICODE -D_UNICODE
 
 LDFLAGS+=	-municode
 
-all: | dirs ${PROG}
+all: | dirs ${PROG}.exe
 
 dirs:
 	mkdir -p ${DIRS}
 
 clean:
-	rm -f ${PROG} *.o
+	rm -f ${PROG}.exe ${PROG}-dbg.exe *.o
 
-${PROG}: ${OBJ}
-	${LINK.o} -o ${PROG} ${OBJ}
+${PROG}.exe: ${PROG}-dbg.exe
+	cp ${PROG}-dbg.exe ${PROG}.exe
+	${STRIP} ${PROG}.exe
+
+${PROG}-dbg.exe: ${OBJ}
+	${LINK.o} -o ${PROG}-dbg.exe ${OBJ}
 
 window.h:		classes/classes.h
 resource.o:		resource.h

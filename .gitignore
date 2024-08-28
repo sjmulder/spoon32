@@ -1,4 +1,4 @@
 *.o
 *.swp
-spoon32.exe
-spoon64.exe
+spoon32*.exe
+spoon64*.exe
