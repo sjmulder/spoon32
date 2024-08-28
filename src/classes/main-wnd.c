@@ -2,6 +2,7 @@
 #include <commctrl.h>
 #include "classes.h"
 #include "../resource.h"
+#include "../util.h"
 
 struct class_ctx {
 	HWND wnd, sbar, tree;
@@ -35,7 +36,7 @@ layout(struct class_ctx *ctx)
 
 	GetClientRect(ctx->wnd, &client);
 	GetWindowRect(ctx->sbar, &sbar);
-	ScreenToClient(ctx->wnd, &sbar);
+	rect_to_client(ctx->wnd, &sbar);
 
 	MoveWindow(ctx->tree, 0, 0, client.right/3, sbar.top, TRUE);
 }

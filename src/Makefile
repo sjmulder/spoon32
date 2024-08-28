@@ -3,6 +3,7 @@ RESC?=	windres
 STRIP?=	strip
 
 OBJ=	winmain.o \
+	util.o \
 	resource.o \
 	classes/main-wnd.o
 
@@ -29,8 +30,9 @@ ${PROG}-dbg.exe: ${OBJ}
 	${LINK.o} -o ${PROG}-dbg.exe ${OBJ}
 
 winmain.o:		classes/classes.h
+util.o:			util.h
 resource.o:		resource.h manifest.xml
-classes/main-wnd.o:	classes/classes.h resource.h
+classes/main-wnd.o:	classes/classes.h util.h resource.h
 
 .SUFFIXES: .rc
 .PHONY: all dirs clean
