@@ -5,6 +5,7 @@ STRIP?=	strip
 OBJ=	winmain.o \
 	util.o \
 	resource.o \
+	classes/connect-wnd.o \
 	classes/main-wnd.o
 
 DIRS=	classes/
@@ -32,6 +33,7 @@ ${PROG}-dbg.exe: ${OBJ}
 winmain.o:		resource.h classes/classes.h
 util.o:			util.h
 resource.o:		resource.h manifest.xml
+classes/connect-wnd.o:	classes/classes.h util.h resource.h
 classes/main-wnd.o:	classes/classes.h util.h resource.h
 
 .SUFFIXES: .rc

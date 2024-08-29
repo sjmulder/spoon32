@@ -44,10 +44,12 @@ layout(struct class_ctx *ctx)
 static void
 handle_command(HWND wnd, WORD cmd)
 {
+	HWND connect_wnd;
+
 	switch (cmd) {
 	case ID_FILE_CONNECT:
-		MessageBox(NULL, L"Not yet implemented.",
-		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		connect_wnd = create_connect_wnd();
+		ShowWindow(connect_wnd, SW_SHOW);
 		break;
 
 	case ID_FILE_CLOSE:

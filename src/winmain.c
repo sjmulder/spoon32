@@ -22,6 +22,7 @@ wWinMain(
 	}
 
 	register_main_wnd();
+	register_connect_wnd();
 
 	wnd = create_main_wnd();
 	ShowWindow(wnd, show_cmd);	
