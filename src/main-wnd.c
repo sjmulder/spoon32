@@ -1,8 +1,7 @@
 #include <windows.h>
 #include <commctrl.h>
-#include "classes.h"
-#include "../resource.h"
-#include "../util.h"
+#include "common.h"
+#include "resource.h"
 
 struct class_ctx {
 	HWND wnd, sbar, tree;

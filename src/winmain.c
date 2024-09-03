@@ -1,6 +1,6 @@
 #include <windows.h>
+#include "common.h"
 #include "resource.h"
-#include "classes/classes.h"
 
 int WINAPI
 wWinMain(

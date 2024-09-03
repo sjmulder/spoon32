@@ -1,4 +1,5 @@
 #include <windows.h>
+#include "common.h"
 
 void
 rect_to_client(HWND wnd, RECT *rect)

@@ -1,41 +1,42 @@
-PROG?=	spoon
-RESC?=	windres
-STRIP?=	strip
+PROG?=		spoon.exe
+RESC?=		windres
+OBJDIR?=	.
 
-OBJ=	winmain.o \
-	util.o \
-	resource.o \
-	classes/main-wnd.o
+DIRS=		${OBJDIR}
 
-DIRS=	classes/
+OBJ=		${OBJDIR}/winmain.o \
+		${OBJDIR}/util.o \
+		${OBJDIR}/resource.o \
+		${OBJDIR}/main-wnd.o
 
 CFLAGS+=	-Wall -Wextra
 CFLAGS+=	-DUNICODE -D_UNICODE
 
 LDFLAGS+=	-municode
 
-all: | dirs ${PROG}.exe
+all: | dirs ${OBJDIR}/${PROG}
 
 dirs:
 	mkdir -p ${DIRS}
 
 clean:
-	rm -f ${PROG}.exe ${PROG}-dbg.exe *.o
+	rm -f ${OBJDIR}/${PROG} \
+	      ${OBJDIR}/*.o
 
-${PROG}.exe: ${PROG}-dbg.exe
-	cp ${PROG}-dbg.exe ${PROG}.exe
-	${STRIP} ${PROG}.exe
+${OBJDIR}/${PROG}: ${OBJ}
+	${LINK.o} -o $@ ${OBJ} ${LDLIBS}
 
-${PROG}-dbg.exe: ${OBJ}
-	${LINK.o} -o ${PROG}-dbg.exe ${OBJ}
+${OBJDIR}/%.o: %.c
+	${COMPILE.c} -o $@ $<
 
-winmain.o:		resource.h classes/classes.h
-util.o:			util.h
-resource.o:		resource.h manifest.xml
-classes/main-wnd.o:	classes/classes.h util.h resource.h
-
-.SUFFIXES: .rc
-.PHONY: all dirs clean
-
-.rc.o:
+${OBJDIR}/%.o: %.rc
 	${RESC} $< $@
+
+${OBJDIR}/winmain.o:		common.h resource.h 
+${OBJDIR}/util.o:		common.h
+${OBJDIR}/resource.o:		resource.h manifest.xml
+${OBJDIR}/main-wnd.o:		common.h resource.h
+
+.SUFFIXES:	.rc
+.PHONY:		all dirs clean
+
