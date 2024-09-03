@@ -7,8 +7,8 @@ MAKE_FLAGS.win32+=	RESC=i686-w64-mingw32-windres
 
 MAKE_FLAGS.win64+=	OBJDIR=../build/win64
 MAKE_FLAGS.win64+=	PROG=spoon64.exe
-MAKE_FLAGS.win64+=	CC=i686-w64-mingw32-gcc
-MAKE_FLAGS.win64+=	RESC=i686-w64-mingw32-windres
+MAKE_FLAGS.win64+=	CC=x86_64-w64-mingw32-gcc
+MAKE_FLAGS.win64+=	RESC=x86_64-w64-mingw32-windres
 
 all:	default
 cross:	cross-win32 cross-win64
