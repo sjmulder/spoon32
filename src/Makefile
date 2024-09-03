@@ -26,11 +26,8 @@ clean:
 ${OBJDIR}/${PROG}: ${OBJ}
 	${LINK.o} -o $@ ${OBJ} ${LDLIBS}
 
-${OBJDIR}/%.o: %.c
-	${COMPILE.c} -o $@ $<
-
-${OBJDIR}/%.o: %.rc
-	${RESC} $< $@
+${OBJDIR}/%.o: %.c	; ${COMPILE.c} -o $@ $<
+${OBJDIR}/%.o: %.rc	; ${RESC} $< $@
 
 ${OBJDIR}/winmain.o:		common.h resource.h 
 ${OBJDIR}/util.o:		common.h
