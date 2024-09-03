@@ -4,16 +4,19 @@ Very work-in-progress Psono client for Windows.
 
 Building
 --------
-Currently set up for cross compiling with mingw-w64. On Debian:
+Requires mingw-w64. On Debian:
 
     sudo apt install build-essential mingw-w64
-    
-Then:
 
-     make
+There's a generic mingw Makefile in `src/`. The Makefile in the root has
+facilities for out-of-tree builds and cross compiling:
 
-This yields `dist/spoon32.exe` and `dist/spoon64.exe` as well as
-non-stripped `-dbg.exe` versions.
+    make 		# or 'make default', uses default CC etc.
+    make cross-win32	# uses i686-w64-mingw-gcc etc.
+    make cross-win64	# uses x86_64-w64-mingw-gcc etc.
+
+    make cross		# both of the cross targets above
+    make dist		# same but also puts files in dist/
 
 Author
 ------
