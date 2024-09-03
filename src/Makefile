@@ -34,6 +34,4 @@ ${OBJDIR}/util.o:		common.h
 ${OBJDIR}/resource.o:		resource.h manifest.xml
 ${OBJDIR}/main-wnd.o:		common.h resource.h
 
-.SUFFIXES:	.rc
-.PHONY:		all dirs clean
-
+.PHONY: all dirs clean
