@@ -9,10 +9,9 @@ OBJ=		${OBJDIR}/winmain.o \
 		${OBJDIR}/resource.o \
 		${OBJDIR}/main-wnd.o
 
-CFLAGS+=	-Wall -Wextra
-CFLAGS+=	-DUNICODE -D_UNICODE
-
+CFLAGS+=	-Wall -Wextra -DUNICODE -D_UNICODE
 LDFLAGS+=	-mwindows -municode
+LDLIBS+=	-lsodium -lcurl
 
 all: | dirs ${OBJDIR}/${PROG}
 

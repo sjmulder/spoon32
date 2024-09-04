@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <curl/curl.h>
+#include <sodium.h>
 #include "common.h"
 #include "resource.h"
 
@@ -13,6 +15,18 @@ wWinMain(
 	HWND wnd;
 	BOOL ret;
 	MSG msg;
+
+	if (curl_global_init(CURL_GLOBAL_DEFAULT)) {
+		MessageBox(NULL, L"Failed to initialize libcurl.",
+		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		ExitProcess(1);
+	}
+
+	if (sodium_init() == -1) {
+		MessageBox(NULL, L"Failed to initialize libsodium.",
+		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		ExitProcess(1);
+	}
 
 	accel = LoadAccelerators(inst, MAKEINTRESOURCE(IDR_ACCELERATOR));
 	if (!accel) {
@@ -39,6 +53,6 @@ wWinMain(
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-	
+
 	return 0;
 }
