@@ -28,3 +28,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: make -j default
+    - uses: actions/upload-artifact@v4
+      with:
+        name: spoon-windows-mingw
+        path: build/default/spoon.exe
