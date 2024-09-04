@@ -12,7 +12,7 @@ OBJ=		${OBJDIR}/winmain.o \
 CFLAGS+=	-Wall -Wextra
 CFLAGS+=	-DUNICODE -D_UNICODE
 
-LDFLAGS+=	-municode
+LDFLAGS+=	-mwindows -municode
 
 all: | dirs ${OBJDIR}/${PROG}
 
