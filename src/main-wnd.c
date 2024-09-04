@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <tchar.h>
 #include <commctrl.h>
 #include "common.h"
 #include "resource.h"
@@ -7,20 +8,20 @@ struct class_ctx {
 	HWND wnd, sbar, tree;
 };
 
-static const wchar_t class_name[] = L"SpoonMainWnd";
+static const TCHAR class_name[] = _T("SpoonMainWnd");
 
 static void
 setup(struct class_ctx *ctx)
 {
 	ctx->sbar = CreateWindowEx(
-	    0, STATUSCLASSNAME, L"Ready",
+	    0, STATUSCLASSNAME, _T("Ready"),
 	    SBARS_SIZEGRIP | WS_CHILD | WS_VISIBLE,
 	    0, 0, 0, 0,
 	    ctx->wnd, NULL, GetModuleHandle(NULL), NULL);
 
 	ctx->tree = CreateWindowEx(
 	    WS_EX_CLIENTEDGE,
-	    WC_TREEVIEW, L"Index",
+	    WC_TREEVIEW, _T("Index"),
 	    WS_VISIBLE | WS_CHILD,
 	    0, 0, 100, 100,
 	    ctx->wnd, NULL, GetModuleHandle(NULL), NULL);
@@ -45,8 +46,8 @@ handle_command(HWND wnd, WORD cmd)
 {
 	switch (cmd) {
 	case ID_FILE_CONNECT:
-		MessageBox(NULL, L"Not yet implemented.",
-		    L"Spoon", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(NULL, _T("Not yet implemented."),
+		    _T("Spoon"), MB_OK | MB_ICONEXCLAMATION);
 		break;
 
 	case ID_FILE_CLOSE:
@@ -113,8 +114,8 @@ register_main_wnd(void)
 	wc.lpszMenuName = MAKEINTRESOURCE(IDR_MENU);
 
 	if (!RegisterClassEx(&wc)) {
-		MessageBox(NULL, L"Failed to register main window class",
-		    L"Spoon", MB_ICONEXCLAMATION | MB_OK);
+		MessageBox(NULL, _T("Failed to register main window class"),
+		    _T("Spoon"), MB_ICONEXCLAMATION | MB_OK);
 		ExitProcess(1);
 	}
 }
@@ -124,15 +125,15 @@ create_main_wnd(void)
 {
 	HWND wnd;
 	
-	wnd = CreateWindowEx(0, class_name, L"Spoon",
+	wnd = CreateWindowEx(0, class_name, _T("Spoon"),
 	    WS_OVERLAPPEDWINDOW,
 	    CW_USEDEFAULT, CW_USEDEFAULT, 
 	    CW_USEDEFAULT, CW_USEDEFAULT,
 	    NULL, NULL, GetModuleHandle(NULL), NULL);
 	
 	if (!wnd) {
-		MessageBox(NULL, L"Failed to create main window",
-		    L"Spoon", MB_ICONEXCLAMATION | MB_OK);
+		MessageBox(NULL, _T("Failed to create main window"),
+		    _T("Spoon"), MB_ICONEXCLAMATION | MB_OK);
 		ExitProcess(1);
 	}
 
