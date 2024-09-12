@@ -2,33 +2,34 @@ name: build
 on: push
 
 jobs:
-  ubuntu-mingw:
+  ubuntu:
     runs-on: ubuntu-latest
     env:
       CFLAGS: '-Werror -O2'
       LDFLAGS: '-s'
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get install -y mingw-w64
-    - run: make -j dist
+    - run: sudo apt-get install -y bmake mingw-w64
+    - run: bmake win32
+    - run: bmake win64
     - uses: actions/upload-artifact@v4
       with:
         name: spoon
-        path: dist/*.exe
+        path: bin/*
 
-  windows-mingw:
+  msys:
     runs-on: windows-latest
     defaults:
       run:
         shell: bash
     env:
-      CC: gcc
       CFLAGS: '-Werror -O2'
       LDFLAGS: '-s'
     steps:
     - uses: actions/checkout@v4
-    - run: make -j default
+    - run: pacman -S bmake
+    - run: bmake msys
     - uses: actions/upload-artifact@v4
       with:
-        name: spoon-windows-mingw
-        path: build/default/spoon.exe
+        name: spoon-msys
+        path: bin/*
